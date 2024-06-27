@@ -51,26 +51,26 @@ function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   let totalIncorrect = 0;
+  console.log("--------------------------------------")
   for(let i = 0; i < candidateAnswers.length; i++)
     { 
       if (candidateAnswers[i].toString().toLowerCase() != correctAnswers[i].toLowerCase()) /*Please answer my question in comments. Why cant i just convert candidateAnswers[i] directly to lower case here? why does it have to be converted to a string first but candidateAnswers[i] does not? Type of says canAnswers is an object but typeof correctAnswers says its a string yet they are both array items which I think means they would be stored as strings.]*/
       {
-        console.log(`Question ${candidateAnswers[i]}: Your answer was ${candidateAnswers[i]}, however the correct answer was ${correctAnswers[i]}. You were wrong.`);
+        console.log(`Question ${i + 1}: Your answer was ${candidateAnswers[i]}, however the correct answer was ${correctAnswers[i]}. You were wrong.`);
         totalIncorrect += 1;
       }
       else
       {
-        console.log(`Question ${candidateAnswers[i]}: You were correct. Your answer was ${candidateAnswers[i]} and the correct answer was ${correctAnswers[i]}. Great job!`);
+        console.log(`Question ${i + 1}: You were correct. Your answer was ${candidateAnswers[i]} and the correct answer was ${correctAnswers[i]}. Great job!`);
       }
     }
+  console.log("--------------------------------------")
   let grade = candidateAnswers.length - totalIncorrect; //TODO 3.2 use this variable to calculate the candidates score.
   if(grade < 0)
     {
       grade = 0;
     }
   grade = (grade / candidateAnswers.length) * 100;
-  console.log(grade);
-  console.log(candidateAnswers.length);
   if(grade >= 80)  
     {
       console.log(`You have passed the test with a score of ${grade} percent. Congratulations!`)
@@ -79,6 +79,7 @@ function gradeQuiz(candidateAnswers) {
     {
       console.log(`You have failed the test with a score of ${grade} percent, which is below the pass threshold of 80 percent. Dont give up. Please try again!`)
     }
+    console.log();
   return grade;
 }
 
@@ -86,6 +87,7 @@ function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
    console.log("Hello " + candidateName);
+   console.log()
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
